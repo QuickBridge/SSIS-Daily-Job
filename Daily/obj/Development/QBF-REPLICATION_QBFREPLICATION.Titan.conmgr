@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="QBF-REPLICATION_QBFREPLICATION.Titan"
+  DTS:DTSID="{0B8450DD-462B-450F-92FE-79CDE28F31A9}"
+  DTS:CreationName="ADO">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=QBF-REPLICATION\QBFREPLICATION;Initial Catalog=Titan;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

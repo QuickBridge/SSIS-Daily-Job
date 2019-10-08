@@ -1,0 +1,846 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/7/2015 2:14:19 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="QBFSYSMS"
+  DTS:CreatorName="QUICKBRIDGE\mstuewe"
+  DTS:DTSID="{9BE00D58-4B79-4456-8A73-45777C5EE3D5}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="_DailyMain"
+  DTS:PackageType="5"
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{C899A581-A86D-4EF2-8704-A4AC6F35E900}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{15EED3D2-010B-40F0-AB36-A2D2EC5BF4F4}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="CalendarDay">
+      <DTS:VariableValue
+        DTS:DataType="7">8/10/2015 2:38:13 PM</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{74BB0A53-6348-4010-8D0B-8A7C58FD1588}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ExpressionTaskAsnwer">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{5E66164F-8FE2-4882-A487-FEBC51BFA907}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="IsQBFBusinessDay">
+      <DTS:VariableValue
+        DTS:DataType="11">-1</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C8F06CC2-FC08-4714-8097-B5A5D517FA65}"
+      DTS:IncludeInDebugDump="6789"
+      DTS:Namespace="User"
+      DTS:ObjectName="QBFBusinessDayDigit">
+      <DTS:VariableValue
+        DTS:DataType="2">0</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC GetQBFBusinessDay"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{9433F70C-D203-4639-9DF2-E0F0C209FF1D}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC GetQBFBusinessDay"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{22B2348B-260D-41F9-A9FA-F1705AAAEED0}"
+          SQLTask:SqlStatementSource="EXEC part.GetQBFBusinessDay"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="QBFBusinessDayDigit"
+            SQLTask:DtsVariableName="User::QBFBusinessDayDigit" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="CalendarDay"
+            SQLTask:DtsVariableName="User::CalendarDay" />
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="IsQBFBusinessDay"
+            SQLTask:DtsVariableName="User::IsQBFBusinessDay" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute Package 8x8"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{A414501C-BB74-488D-9D1E-BAA9BCD89779}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute Package 8x8"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>Process8X8.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Execute Package MarketingLeads"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{7E48C568-4EAF-4700-BFCC-4BBC050FD503}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Execute Package MarketingLeads"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessMarketingLeads.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process Charge Off Snapshot on 5th QBF Calendar Day"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{4A8117BF-EEDE-4F82-BEEB-80763A72E578}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process Charge Off Snapshot on 5th QBF Calendar Day"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessChargeOffSnapshot.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process DealDocOutSnapshot Insert"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{bd2a7bed-4def-4ba4-bebc-b0f373ffe118}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process DealDocOutSnapshot Insert"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessDealDocOutSnapshot.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process Eligibility Snapshot Insert"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{E013588B-C4A1-4726-A244-34FF8312F9A2}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process Eligibility Snapshot Insert"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessEligibilitySnapshot.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process EOS Adverse Action Report"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{6AE641A8-CC0D-4BFA-80C7-DE1C87A7467F}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process EOS Adverse Action Report"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessEOSAdverseActionReport.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process ExperianFICOScores Daily"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{406b26a3-fb46-4244-ae26-526830241972}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process ExperianFICOScores Daily"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessExperianFICOScores.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>EmailToExpediaMissingSSNs</ParameterName>
+            <BindedVariableOrParameterName>$Project::EmailSendToForErrors</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process ExperianFICOScores Seperately"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{C9E48AE5-A6E4-442E-BCED-1E9A2E83B623}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process ExperianFICOScores Seperately"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessExperianFICOScores.dtsx</PackageName>
+          <ParameterAssignment>
+            <ParameterName>EmailToExpediaMissingSSNs</ParameterName>
+            <BindedVariableOrParameterName>$Project::EmailSendToForErrors</BindedVariableOrParameterName>
+          </ParameterAssignment>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process Get Sales Calls"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{E0C0444D-AC83-4048-B0EC-1C5425ED68F1}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process Get Sales Calls"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>GetSalesCalls.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Process Navigator Deals Daily"
+      DTS:CreationName="Microsoft.ExecutePackageTask"
+      DTS:Description="Execute Package Task"
+      DTS:DTSID="{BF67E4F6-A4CA-4D6A-AD62-9D53BBB86C7B}"
+      DTS:ExecutableType="Microsoft.ExecutePackageTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Process Navigator Deals Daily"
+      DTS:TaskContact="Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExecutePackageTask>
+          <UseProjectReference>True</UseProjectReference>
+          <PackageName>ProcessNavigatorDeals.dtsx</PackageName>
+        </ExecutePackageTask>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{DBA5C27F-70B8-45A8-9D49-9567359944CC}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcessChargeOffSnapshot] &amp;&amp;  (@[User::QBFBusinessDayDigit] == 5)"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Process Charge Off Snapshot on 5th QBF Calendar Day" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{40BFFCB1-20FC-4A10-B3F5-9B6739EFD2B6}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcessNavigatorDeals]"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Process Navigator Deals Daily" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{D1550B6C-CF4D-442A-8018-8518EC71678D}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcessExperianFICOScoresSeperately]"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\Process ExperianFICOScores Seperately" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{EF7555F7-9B08-4239-B1E2-9497E996552D}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcess8X8Calls]"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\Execute Package 8x8" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{04D5EA21-3952-4C8E-8EAB-B71DA890BC00}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcessMarketingLeads]"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\Execute Package MarketingLeads" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 5]"
+      DTS:CreationName=""
+      DTS:DTSID="{9E57194C-B0B7-4E5A-93E3-18901C5B4149}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcessDealDocOutSnapshot] &amp;&amp;  @[User::IsQBFBusinessDay]"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 5"
+      DTS:To="Package\Process DealDocOutSnapshot Insert" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 6]"
+      DTS:CreationName=""
+      DTS:DTSID="{2D272FC7-B6AD-4051-A194-7B6EF275CC8A}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcessEligibilitySnapshot] &amp;&amp;  @[User::IsQBFBusinessDay]"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 6"
+      DTS:To="Package\Process Eligibility Snapshot Insert" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 7]"
+      DTS:CreationName=""
+      DTS:DTSID="{DB782A96-6E1A-4234-856F-AB21758D55CC}"
+      DTS:EvalOp="1"
+      DTS:Expression="@[$Project::zProcessExperianFICOScores]"
+      DTS:From="Package\Process Eligibility Snapshot Insert"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 7"
+      DTS:To="Package\Process ExperianFICOScores Daily"
+      DTS:Value="2" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 8]"
+      DTS:CreationName=""
+      DTS:DTSID="{22B8E904-196D-4B29-ABCA-BE1F6C365B39}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcessEOSAdverseActionReport] &amp;&amp;  @[User::IsQBFBusinessDay]"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 8"
+      DTS:To="Package\Process EOS Adverse Action Report" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 9]"
+      DTS:CreationName=""
+      DTS:DTSID="{D731F5D9-F7A6-48AD-8F39-B5E50030FB6B}"
+      DTS:EvalOp="3"
+      DTS:Expression="@[$Project::zProcessGetSalesCalls] &amp;&amp;  @[User::IsQBFBusinessDay]"
+      DTS:From="Package\EXEC GetQBFBusinessDay"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 9"
+      DTS:To="Package\Process Get Sales Calls" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="201,42"
+          Id="Package\EXEC GetQBFBusinessDay"
+          TopLeft="102,32" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Execute Package 8x8"
+          TopLeft="585,435" />
+        <NodeLayout
+          Size="237,42"
+          Id="Package\Execute Package MarketingLeads"
+          TopLeft="587,540" />
+        <NodeLayout
+          Size="340,42"
+          Id="Package\Process Charge Off Snapshot on 5th QBF Calendar Day"
+          TopLeft="577,150" />
+        <NodeLayout
+          Size="250,42"
+          Id="Package\Process DealDocOutSnapshot Insert"
+          TopLeft="583,642" />
+        <NodeLayout
+          Size="239,42"
+          Id="Package\Process Eligibility Snapshot Insert"
+          TopLeft="588,718" />
+        <NodeLayout
+          Size="247,42"
+          Id="Package\Process EOS Adverse Action Report"
+          TopLeft="597.777777777778,808.888888888889" />
+        <NodeLayout
+          Size="241,42"
+          Id="Package\Process ExperianFICOScores Daily"
+          TopLeft="1098,717" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package\Process ExperianFICOScores Seperately"
+          TopLeft="580,351" />
+        <NodeLayout
+          Size="268,42"
+          Id="Package\Process Navigator Deals Daily"
+          TopLeft="577,250" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="266.833333333333,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="480.166666666667,76"
+              Start="0,0"
+              End="480.166666666667,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.1121951219512" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.1121951219512"
+                    Point2="0,20.1121951219512"
+                    Point3="4,20.1121951219512" />
+                  <mssgle:LineSegment
+                    End="476.166666666667,20.1121951219512" />
+                  <mssgle:CubicBezierSegment
+                    Point1="476.166666666667,20.1121951219512"
+                    Point2="480.166666666667,20.1121951219512"
+                    Point3="480.166666666667,24.1121951219512" />
+                  <mssgle:LineSegment
+                    End="480.166666666667,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="230.444444444444,21.3921568627451,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="226.625,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="484.375,176"
+              Start="0,0"
+              End="484.375,168.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,152.997173144876" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,152.997173144876"
+                    Point2="0,156.997173144876"
+                    Point3="4,156.997173144876" />
+                  <mssgle:LineSegment
+                    End="480.375,156.997173144876" />
+                  <mssgle:CubicBezierSegment
+                    Point1="480.375,156.997173144876"
+                    Point2="484.375,156.997173144876"
+                    Point3="484.375,160.997173144876" />
+                  <mssgle:LineSegment
+                    End="484.375,168.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="241.444444444444,80.9052132701422,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="192,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="522,277"
+              Start="0,0"
+              End="522,269.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,253.751227495908" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,253.751227495908"
+                    Point2="0,257.751227495908"
+                    Point3="4,257.751227495908" />
+                  <mssgle:LineSegment
+                    End="518,257.751227495908" />
+                  <mssgle:CubicBezierSegment
+                    Point1="518,257.751227495908"
+                    Point2="522,257.751227495908"
+                    Point3="522,261.751227495908" />
+                  <mssgle:LineSegment
+                    End="522,269.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="228.444444444444,99.3626373626374,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="175.166666666667,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="499.833333333333,361"
+              Start="0,0"
+              End="499.833333333333,353.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,332.532926829268" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,332.532926829268"
+                    Point2="0,336.532926829268"
+                    Point3="4,336.532926829268" />
+                  <mssgle:LineSegment
+                    End="495.833333333333,336.532926829268" />
+                  <mssgle:CubicBezierSegment
+                    Point1="495.833333333333,336.532926829268"
+                    Point2="499.833333333333,336.532926829268"
+                    Point3="499.833333333333,340.532926829268" />
+                  <mssgle:LineSegment
+                    End="499.833333333333,353.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="281.444444444444,82.8627450980392,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="156.666666666667,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="548.833333333333,466"
+              Start="0,0"
+              End="548.833333333333,458.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,428.608094768016" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,428.608094768016"
+                    Point2="0,432.608094768016"
+                    Point3="4,432.608094768016" />
+                  <mssgle:LineSegment
+                    End="544.833333333333,432.608094768016" />
+                  <mssgle:CubicBezierSegment
+                    Point1="544.833333333333,432.608094768016"
+                    Point2="548.833333333333,432.608094768016"
+                    Point3="548.833333333333,436.608094768016" />
+                  <mssgle:LineSegment
+                    End="548.833333333333,458.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="282.194444444444,163.747252747253,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 5]"
+          TopLeft="127.857142857143,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="580.142857142857,568"
+              Start="0,0"
+              End="580.142857142857,560.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,529.426845637584" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,529.426845637584"
+                    Point2="0,533.426845637584"
+                    Point3="4,533.426845637584" />
+                  <mssgle:LineSegment
+                    End="576.142857142857,533.426845637584" />
+                  <mssgle:CubicBezierSegment
+                    Point1="576.142857142857,533.426845637584"
+                    Point2="580.142857142857,533.426845637584"
+                    Point3="580.142857142857,537.426845637584" />
+                  <mssgle:LineSegment
+                    End="580.142857142857,560.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="254.444444444444,289,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 6]"
+          TopLeft="114.625,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="592.875,644"
+              Start="0,0"
+              End="592.875,636.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,616.080565371025" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,616.080565371025"
+                    Point2="0,620.080565371025"
+                    Point3="4,620.080565371025" />
+                  <mssgle:LineSegment
+                    End="588.875,620.080565371025" />
+                  <mssgle:CubicBezierSegment
+                    Point1="588.875,620.080565371025"
+                    Point2="592.875,620.080565371025"
+                    Point3="592.875,624.080565371025" />
+                  <mssgle:LineSegment
+                    End="592.875,636.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="268.694444444444,282.744075829384,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 7]"
+          TopLeft="827,738.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="271,0"
+              Start="0,0"
+              End="263.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="263.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="97.7844140625,5,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 8]"
+          TopLeft="109.444444444444,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="611.833333333333,734.888888888889"
+              Start="0,0"
+              End="611.833333333333,727.388888888889">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,708.679398584412" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,708.679398584412"
+                    Point2="0,712.679398584412"
+                    Point3="4,712.679398584412" />
+                  <mssgle:LineSegment
+                    End="607.833333333333,712.679398584412" />
+                  <mssgle:CubicBezierSegment
+                    Point1="607.833333333333,712.679398584412"
+                    Point2="611.833333333333,712.679398584412"
+                    Point3="611.833333333333,716.679398584412" />
+                  <mssgle:LineSegment
+                    End="611.833333333333,727.388888888889" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="297.916666666667,717.679398584412,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="@[$Project::zProcessChargeOffSnapshot] &#xA;&amp;&amp;  (@[User::QBFBusinessDayDigit] == 5)"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="269,53"
+          Id="35c804f4-94d0-4d13-8b12-c1c4f4d599ee"
+          TopLeft="322,33" />
+        <AnnotationLayout
+          Text="@[$Project::zProcessNavigatorDeals]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="237,39"
+          Id="090192ff-ef1f-42fd-8877-3606ffaef1d8"
+          TopLeft="316,186" />
+        <AnnotationLayout
+          Text="@[$Project::zProcessExperianFICOScoresSeperately]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="304,39"
+          Id="ae3aab35-c258-49af-9f86-ddb17ecc15cc"
+          TopLeft="324,290" />
+        <AnnotationLayout
+          Text="@[$Project::zProcess8X8Calls]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="188,39"
+          Id="9bcba208-a827-40a8-a79a-26cc764b855f"
+          TopLeft="325,374" />
+        <AnnotationLayout
+          Text="@[$Project::zProcessMarketingLeads]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="228,39"
+          Id="1594a0eb-6b38-4876-9728-d30669751a79"
+          TopLeft="324,461" />
+        <AnnotationLayout
+          Text="@[$Project::zProcessDealDocOutSnapshot] &#xA;&amp;&amp; @[User::IsQBFBusinessDay]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="261,53"
+          Id="967ff371-d638-458f-af37-324251fc5d82"
+          TopLeft="292,550" />
+        <AnnotationLayout
+          Text="@[$Project::zProcessEligibilitySnapshot] &amp;&amp;  @[User::IsQBFBusinessDay]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="255,53"
+          Id="c2dcba8c-9627-4ede-836e-14b8c9e28ec0"
+          TopLeft="304,648" />
+        <AnnotationLayout
+          Text="@[$Project::zProcessExperianFICOScores]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="248,39"
+          Id="0c4b6158-c9fb-486f-bc22-28d3829c6440"
+          TopLeft="832,704" />
+        <AnnotationLayout
+          Text="@[$Project::zProcessEOSAdverseActionReport] &amp;&amp; @[User::IsQBFBusinessDay]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="430,39"
+          Id="4cffba28-b641-4032-8120-0aa6207139ab"
+          TopLeft="226.666666666667,754.444444444444" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\Process Get Sales Calls"
+          TopLeft="600,905" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 9]"
+          TopLeft="141.1,74">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="577.9,831"
+              Start="0,0"
+              End="577.9,823.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,803.741995073892" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,803.741995073892"
+                    Point2="0,807.741995073892"
+                    Point3="4,807.741995073892" />
+                  <mssgle:LineSegment
+                    End="573.9,807.741995073892" />
+                  <mssgle:CubicBezierSegment
+                    Point1="573.9,807.741995073892"
+                    Point2="577.9,807.741995073892"
+                    Point3="577.9,811.741995073892" />
+                  <mssgle:LineSegment
+                    End="577.9,823.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="280.95,812.741995073892,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="@[$Project::zProcessGetSalesCalls] &amp;&amp;  @[User::IsQBFBusinessDay]"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="365,60"
+          Id="db59ba54-00c2-48fc-b063-417e23329277"
+          TopLeft="218,845" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
